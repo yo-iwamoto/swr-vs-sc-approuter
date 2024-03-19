@@ -12,4 +12,7 @@ module.exports = {
     typedRoutes: true,
     turbo: true,
   },
+  compiler: {
+    styledComponents: true,
+  },
 };

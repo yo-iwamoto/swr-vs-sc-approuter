@@ -10,9 +10,12 @@ type Props = PropsWithChildren<{
 }>;
 
 export function AuthGuard({ children, WhenUnauthenticated }: Props) {
+  console.log("=");
   const query = useSWR("me", () => api.auth.me.$get().then(resolveResponse));
 
+  console.log(query.error);
   if (query.error !== undefined) {
+    console.log("=====");
     return <WhenUnauthenticated />;
   }
 
