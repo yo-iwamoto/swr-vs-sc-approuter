@@ -11,6 +11,7 @@ model User {
   id       String @id @default(cuid())
   username String @unique
 
+  Post Post[]
   Like Like[]
 
   Follower  Follow[] @relation("follower")
@@ -24,7 +25,12 @@ model Post {
 
   content String
 
+  userId String @map("user_id")
+  User   User   @relation(fields: [userId], references: [id])
+
   Like Like[]
+
+  createdAt DateTime @default(now())
 
   @@map("posts")
 }

@@ -1,12 +1,11 @@
 import { Hono } from "hono";
 import { authRoute } from "./routes/auth";
 import { handle } from "hono/vercel";
-
-export const runtime = "edge";
+import { postsRoute } from "./routes/posts";
 
 const app = new Hono().basePath("/api");
 
-const routes = app.route("/auth", authRoute);
+const routes = app.route("/auth", authRoute).route("/posts", postsRoute);
 
 export type AppType = typeof routes;
 
