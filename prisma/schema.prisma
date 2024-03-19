@@ -1,12 +1,54 @@
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id String @id @default(uuid())
+  id       String @id @default(cuid())
+  username String @unique
+
+  Like Like[]
+
+  Follower  Follow[] @relation("follower")
+  Following Follow[] @relation("following")
+
+  @@map("users")
+}
+
+model Post {
+  id String @id @default(cuid())
+
+  content String
+
+  Like Like[]
+
+  @@map("posts")
+}
+
+model Like {
+  id String @id @default(cuid())
+
+  userId String @map("user_id")
+  User   User   @relation(fields: [userId], references: [id])
+
+  postId String @map("post_id")
+  Post   Post   @relation(fields: [postId], references: [id])
+
+  @@map("likes")
+}
+
+model Follow {
+  id String @id @default(cuid())
+
+  followerId String @map("follower_id")
+  follower   User   @relation("follower", fields: [followerId], references: [id])
+
+  followingId String @map("following_id")
+  following   User   @relation("following", fields: [followingId], references: [id])
+
+  @@map("follows")
 }
