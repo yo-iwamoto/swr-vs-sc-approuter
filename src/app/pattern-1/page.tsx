@@ -4,7 +4,7 @@ import { UserStatus } from "./components/user-status";
 
 export default function Page() {
   return (
-    <div className="py-8 px-2 grid gap-12">
+    <div className="py-8 px-2 grid gap-4">
       <UserStatus />
 
       <main className="py-8 px-2 grid gap-8">

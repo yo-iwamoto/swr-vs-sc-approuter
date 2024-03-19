@@ -1,7 +1,10 @@
+const withInterceptStdout = require("next-intercept-stdout");
+const ignoreStderr = require("./ignore-stderr.json");
+
 /**
  * @type {import('next').NextConfig}
  */
-module.exports = {
+const nextConfig = {
   swcMinify: true,
   output: "standalone",
   reactStrictMode: true,
@@ -12,3 +15,7 @@ module.exports = {
     styledComponents: true,
   },
 };
+
+module.exports = withInterceptStdout(nextConfig, (text) =>
+  ignoreStderr.some((pattern) => text.includes(pattern)) ? "" : text,
+);

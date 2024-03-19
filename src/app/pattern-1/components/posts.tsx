@@ -1,6 +1,6 @@
 "use client";
 
-import { type PostApiResponse, api } from "@/lib/api";
+import type { PostApiResponse } from "@/lib/api";
 import {
   Base,
   Button,
@@ -13,9 +13,9 @@ import {
   Loader,
 } from "smarthr-ui";
 import { mutate } from "swr";
-import useSWRMutation from "swr/mutation";
-import { useMeQuery } from "../queries/me";
-import { usePostsQuery } from "../queries/posts";
+import { useMeQuery } from "../queries/use-me-query";
+import { usePostsQuery } from "../queries/use-posts-query";
+import { useDeletePostMutation } from "../mutations/use-delete-post-mutation";
 
 export function Posts() {
   const postsQuery = usePostsQuery();
@@ -52,14 +52,12 @@ type PostProps = {
 function Post({ post }: PostProps) {
   const meQuery = useMeQuery();
 
-  const mutation = useSWRMutation("deletePost", () =>
-    api.posts[":id"].$delete({ param: { id: post.id } }),
-  );
+  const mutation = useDeletePostMutation();
 
   const onClickDelete = async () => {
     if (!confirm("本当に削除しますか？")) return;
 
-    await mutation.trigger();
+    await mutation.trigger({ id: post.id });
     await mutate(["posts"]);
   };
 

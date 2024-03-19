@@ -1,29 +1,23 @@
 "use client";
 
-import { api } from "@/lib/api";
-import { type FormEvent, useState } from "react";
+import type { FormEvent } from "react";
 import { Button, FormControl, Stack, Textarea } from "smarthr-ui";
 import { mutate } from "swr";
+import { useCreatePostMutation } from "@/app/pattern-1/mutations/use-create-post-mutation";
 
 export function PostForm() {
-  const [isLoading, setIsLoading] = useState(false);
+  const mutation = useCreatePostMutation();
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setIsLoading(true);
+    const form = e.currentTarget;
+    const content = new FormData(form).get("content");
+    if (typeof content !== "string") return;
 
-    try {
-      const form = e.currentTarget;
-      const content = new FormData(form).get("content");
-      if (typeof content !== "string") return;
-
-      await api.posts.$post({ json: { content } });
-      form.reset();
-      await mutate(["posts"]);
-    } finally {
-      setIsLoading(false);
-    }
+    await mutation.trigger({ content });
+    form.reset();
+    await mutate(["posts"]);
   };
 
   return (
@@ -47,7 +41,7 @@ export function PostForm() {
             type="submit"
             variant="primary"
             className="w-full overflow-hidden h-[42px]"
-            loading={isLoading}
+            loading={mutation.isMutating}
           >
             投稿
           </Button>

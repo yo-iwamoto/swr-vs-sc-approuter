@@ -1,19 +1,15 @@
 "use client";
 
 import { useNotification } from "@/app/components/notification-bar-area";
-import { api } from "@/lib/api";
-import { resolveResponse } from "@/lib/resolve-response";
 import { Button } from "smarthr-ui";
 import { mutate } from "swr";
-import useSWRMutation from "swr/mutation";
-import { useMeQuery } from "../queries/me";
+import { useMeQuery } from "@/app/pattern-1/queries/use-me-query";
+import { useSignOutMutation } from "@/app/pattern-1/mutations/use-sign-out-mutation";
 
 export function UserStatus() {
   const meQuery = useMeQuery();
   const { notify } = useNotification();
-  const signOutMutation = useSWRMutation("signOut", () =>
-    api.auth.signout.$post().then(resolveResponse),
-  );
+  const signOutMutation = useSignOutMutation();
 
   const onClickSignOut = async () => {
     await signOutMutation.trigger();
