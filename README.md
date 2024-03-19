@@ -1,5 +1,7 @@
 # yo-iwamoto/swr-vs-sc-approuter
 
+SWR vs Server Components for server state management on App Router.
+
 ## Getting Started
 
 ```shell
