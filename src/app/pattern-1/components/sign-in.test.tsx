@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { SignIn } from "./sign-in";
 import userEvent from "@testing-library/user-event";
+import { SignIn } from "./sign-in";
 
 const triggerMock = vi.fn(async () => ({ type: "signin" }));
 vi.mock("@/app/pattern-1/mutations/use-sign-in-mutation", () => ({

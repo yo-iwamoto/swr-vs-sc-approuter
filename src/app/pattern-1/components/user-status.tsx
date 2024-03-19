@@ -1,10 +1,10 @@
 "use client";
 
 import { useNotification } from "@/app/components/notification-bar-area";
+import { useSignOutMutation } from "@/app/pattern-1/mutations/use-sign-out-mutation";
+import { useMeQuery } from "@/app/pattern-1/queries/use-me-query";
 import { Button } from "smarthr-ui";
 import { mutate } from "swr";
-import { useMeQuery } from "@/app/pattern-1/queries/use-me-query";
-import { useSignOutMutation } from "@/app/pattern-1/mutations/use-sign-out-mutation";
 
 export function UserStatus() {
   const meQuery = useMeQuery();

@@ -1,9 +1,9 @@
 "use client";
 
+import { useCreatePostMutation } from "@/app/pattern-1/mutations/use-create-post-mutation";
 import type { FormEvent } from "react";
 import { Button, FormControl, Stack, Textarea } from "smarthr-ui";
 import { mutate } from "swr";
-import { useCreatePostMutation } from "@/app/pattern-1/mutations/use-create-post-mutation";
 
 export function PostForm() {
   const mutation = useCreatePostMutation();

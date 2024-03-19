@@ -1,5 +1,5 @@
-import { AuthGuard } from "./auth-guard";
 import { render, screen } from "@testing-library/react";
+import { AuthGuard } from "./auth-guard";
 
 const useMeQueryMock = vi.hoisted(() => vi.fn());
 vi.mock("@/app/pattern-1/queries/use-me-query", () => ({

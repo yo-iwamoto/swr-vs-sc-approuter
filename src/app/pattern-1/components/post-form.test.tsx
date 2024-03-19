@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { PostForm } from "./post-form";
 import userEvent from "@testing-library/user-event";
+import { PostForm } from "./post-form";
 
 const triggerMock = vi.fn();
 vi.mock("@/app/pattern-1/mutations/use-create-post-mutation", () => ({

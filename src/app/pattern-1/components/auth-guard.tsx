@@ -1,8 +1,8 @@
 "use client";
 
+import { useMeQuery } from "@/app/pattern-1/queries/use-me-query";
 import type { PropsWithChildren } from "react";
 import { Loader } from "smarthr-ui";
-import { useMeQuery } from "@/app/pattern-1/queries/use-me-query";
 
 type Props = PropsWithChildren<{
   WhenUnauthenticated: () => JSX.Element;

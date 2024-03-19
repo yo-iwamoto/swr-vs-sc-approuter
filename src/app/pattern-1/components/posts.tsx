@@ -1,5 +1,8 @@
 "use client";
 
+import { useDeletePostMutation } from "@/app/pattern-1/mutations/use-delete-post-mutation";
+import { useMeQuery } from "@/app/pattern-1/queries/use-me-query";
+import { usePostsQuery } from "@/app/pattern-1/queries/use-posts-query";
 import type { PostApiResponse } from "@/lib/api";
 import {
   Base,
@@ -13,9 +16,6 @@ import {
   Loader,
 } from "smarthr-ui";
 import { mutate } from "swr";
-import { useMeQuery } from "@/app/pattern-1/queries/use-me-query";
-import { usePostsQuery } from "@/app/pattern-1/queries/use-posts-query";
-import { useDeletePostMutation } from "@/app/pattern-1/mutations/use-delete-post-mutation";
 
 export function Posts() {
   const postsQuery = usePostsQuery();

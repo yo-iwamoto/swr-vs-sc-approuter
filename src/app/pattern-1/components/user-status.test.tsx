@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { UserStatus } from "./user-status";
 import userEvent from "@testing-library/user-event";
+import { UserStatus } from "./user-status";
 
 const useMeQueryMok = vi.hoisted(() => vi.fn());
 vi.mock("@/app/pattern-1/queries/use-me-query", () => ({
