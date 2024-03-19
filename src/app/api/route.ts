@@ -1,15 +1,14 @@
 import { Hono } from "hono";
+import { authRoute } from "./routes/auth";
 import { handle } from "hono/vercel";
 
 export const runtime = "edge";
 
 const app = new Hono().basePath("/api");
 
-app.get("/hello", (c) => {
-  return c.json({
-    message: "Hello Next.js!",
-  });
-});
+const routes = app.route("/auth", authRoute);
+
+export type AppType = typeof routes;
 
 const handler = handle(app);
 
