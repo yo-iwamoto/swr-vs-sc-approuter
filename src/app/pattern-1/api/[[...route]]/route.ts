@@ -3,7 +3,7 @@ import { authRoute } from "./routes/auth";
 import { handle } from "hono/vercel";
 import { postsRoute } from "./routes/posts";
 
-const app = new Hono().basePath("/api");
+const app = new Hono().basePath("/pattern-1/api");
 
 const routes = app.route("/auth", authRoute).route("/posts", postsRoute);
 
