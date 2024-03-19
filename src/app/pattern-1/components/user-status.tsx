@@ -1,12 +1,12 @@
 "use client";
 
-import { Button } from "smarthr-ui";
-import { useMeQuery } from "../queries/me";
-import useSWRMutation from "swr/mutation";
+import { useNotification } from "@/app/components/notification-bar-area";
 import { api } from "@/lib/api";
 import { resolveResponse } from "@/lib/resolve-response";
+import { Button } from "smarthr-ui";
 import { mutate } from "swr";
-import { useNotification } from "@/app/components/notification-bar-area";
+import useSWRMutation from "swr/mutation";
+import { useMeQuery } from "../queries/me";
 
 export function UserStatus() {
   const meQuery = useMeQuery();

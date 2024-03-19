@@ -14,8 +14,8 @@ import {
 } from "smarthr-ui";
 import { mutate } from "swr";
 import useSWRMutation from "swr/mutation";
-import { usePostsQuery } from "../queries/posts";
 import { useMeQuery } from "../queries/me";
+import { usePostsQuery } from "../queries/posts";
 
 export function Posts() {
   const postsQuery = usePostsQuery();

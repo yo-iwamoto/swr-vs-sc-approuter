@@ -8,10 +8,6 @@ module.exports = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  experimental: {
-    typedRoutes: true,
-    turbo: true,
-  },
   compiler: {
     styledComponents: true,
   },

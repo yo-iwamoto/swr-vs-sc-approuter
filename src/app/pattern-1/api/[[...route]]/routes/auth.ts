@@ -1,10 +1,10 @@
+import { envVars } from "@/config/env";
 import { prisma } from "@/lib/prisma";
 import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
-import { z } from "zod";
-import { envVars } from "@/config/env";
+import { deleteCookie, setCookie } from "hono/cookie";
 import * as jwt from "hono/jwt";
-import { setCookie, deleteCookie } from "hono/cookie";
+import { z } from "zod";
 import { currentUser } from "../lib/auth";
 
 const app = new Hono();

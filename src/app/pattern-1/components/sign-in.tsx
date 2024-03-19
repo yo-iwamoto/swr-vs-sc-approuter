@@ -3,7 +3,7 @@
 import { useNotification } from "@/app/components/notification-bar-area";
 import { api } from "@/lib/api";
 import { resolveResponse } from "@/lib/resolve-response";
-import { useState, type FormEvent } from "react";
+import { type FormEvent, useState } from "react";
 import { Base, Button, FormControl, Input, Stack } from "smarthr-ui";
 import { mutate } from "swr";
 

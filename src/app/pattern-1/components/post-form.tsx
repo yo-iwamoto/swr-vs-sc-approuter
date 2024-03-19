@@ -1,7 +1,7 @@
 "use client";
 
 import { api } from "@/lib/api";
-import { useState, type FormEvent } from "react";
+import { type FormEvent, useState } from "react";
 import { Button, FormControl, Stack, Textarea } from "smarthr-ui";
 import { mutate } from "swr";
 

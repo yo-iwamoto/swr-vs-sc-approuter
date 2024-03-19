@@ -1,9 +1,9 @@
+import "@/styles/global.css";
 import type { Metadata } from "next";
 import type { PropsWithChildren } from "react";
+import "smarthr-ui/smarthr-ui.css";
 import { LayoutView } from "./components/layout-view";
 import { RootProviders } from "./components/root-providers";
-import "@/styles/global.css";
-import "smarthr-ui/smarthr-ui.css";
 
 export const metadata = {
   title: "App Router Example",
