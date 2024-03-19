@@ -1,5 +1,5 @@
 {
-  "name": "app-router-example",
+  "name": "swr-vs-sc-approuter",
   "license": "MIT",
   "engines": {
     "node": "^20.10.0",

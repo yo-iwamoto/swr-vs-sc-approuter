@@ -1,1 +1,1 @@
-# yo-iwamoto/app-router-example
+# yo-iwamoto/swr-vs-sc-approuter
