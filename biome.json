@@ -4,7 +4,8 @@
     "ignore": ["node_modules", ".next"]
   },
   "organizeImports": {
-    "enabled": true
+    "enabled": true,
+    "ignore": ["src/app/layout.tsx"]
   },
   "linter": {
     "enabled": true,
