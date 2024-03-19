@@ -13,9 +13,9 @@ import {
   Loader,
 } from "smarthr-ui";
 import { mutate } from "swr";
-import { useMeQuery } from "../queries/use-me-query";
-import { usePostsQuery } from "../queries/use-posts-query";
-import { useDeletePostMutation } from "../mutations/use-delete-post-mutation";
+import { useMeQuery } from "@/app/pattern-1/queries/use-me-query";
+import { usePostsQuery } from "@/app/pattern-1/queries/use-posts-query";
+import { useDeletePostMutation } from "@/app/pattern-1/mutations/use-delete-post-mutation";
 
 export function Posts() {
   const postsQuery = usePostsQuery();
@@ -69,7 +69,7 @@ function Post({ post }: PostProps) {
     <Base as="li" className="p-4 grid gap-2">
       <Cluster align="center" justify="space-between">
         <p className="font-bold">
-          <Cluster align="center">
+          <Cluster as="span" align="center">
             <FaUserIcon />
             <span>{post.User.username}</span>
           </Cluster>
