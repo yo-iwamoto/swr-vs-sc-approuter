@@ -1,0 +1,88 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Posts > snapshot 1`] = `
+<DocumentFragment>
+  <ul
+    class="grid gap-3 max-w-2xl mx-auto w-full"
+  >
+    <li
+      class="smarthr-ui-Base shr-bg-white forced-colors:shr-border-shorthand contrast-more:shr-border-high-contrast shr-rounded-l shr-shadow-layer-1 p-4 grid gap-2"
+    >
+      <div
+        class="shr-flex-wrap [&:empty]:shr-gap-0 shr-flex shr-gap-y-0.5 shr-gap-x-0.5 shr-items-center shr-justify-between"
+      >
+        <p
+          class="font-bold"
+        >
+          <span
+            class="shr-flex-wrap [&:empty]:shr-gap-0 shr-flex shr-gap-y-0.5 shr-gap-x-0.5 shr-items-center"
+          >
+            <svg
+              aria-hidden="true"
+              class="smarthr-ui-Icon group-[]/iconWrapper:shr-shrink-0 group-[]/iconWrapper:shr-translate-y-[0.125em] forced-colors:shr-fill-[CanvasText]"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              role="img"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 448 512"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
+              />
+            </svg>
+            <span>
+              user-1
+            </span>
+          </span>
+        </p>
+      </div>
+      <p>
+        Hello world
+      </p>
+    </li>
+    <li
+      class="smarthr-ui-Base shr-bg-white forced-colors:shr-border-shorthand contrast-more:shr-border-high-contrast shr-rounded-l shr-shadow-layer-1 p-4 grid gap-2"
+    >
+      <div
+        class="shr-flex-wrap [&:empty]:shr-gap-0 shr-flex shr-gap-y-0.5 shr-gap-x-0.5 shr-items-center shr-justify-between"
+      >
+        <p
+          class="font-bold"
+        >
+          <span
+            class="shr-flex-wrap [&:empty]:shr-gap-0 shr-flex shr-gap-y-0.5 shr-gap-x-0.5 shr-items-center"
+          >
+            <svg
+              aria-hidden="true"
+              class="smarthr-ui-Icon group-[]/iconWrapper:shr-shrink-0 group-[]/iconWrapper:shr-translate-y-[0.125em] forced-colors:shr-fill-[CanvasText]"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              role="img"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 448 512"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
+              />
+            </svg>
+            <span>
+              user-2
+            </span>
+          </span>
+        </p>
+      </div>
+      <p>
+        Second post
+      </p>
+    </li>
+  </ul>
+</DocumentFragment>
+`;

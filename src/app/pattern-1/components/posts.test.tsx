@@ -56,4 +56,19 @@ describe("Posts", () => {
     expect(screen.getAllByRole("listitem")[0]).toHaveTextContent(/user-1/);
     expect(screen.getAllByRole("listitem")[0]).toHaveTextContent(/Hello world/);
   });
+
+  it("snapshot", () => {
+    usePostsQueryMock.mockReturnValue({
+      data: {
+        posts: [
+          { id: "1", User: { username: "user-1" }, content: "Hello world" },
+          { id: "2", User: { username: "user-2" }, content: "Second post" },
+        ],
+      },
+    });
+
+    const { asFragment } = render(<Posts />);
+
+    expect(asFragment()).toMatchSnapshot();
+  });
 });

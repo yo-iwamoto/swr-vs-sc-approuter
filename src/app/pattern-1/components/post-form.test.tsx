@@ -52,4 +52,10 @@ describe("PostForm", () => {
 
     expect(mutateMock).toHaveBeenLastCalledWith(["posts"]);
   });
+
+  it("snapshot", () => {
+    const { asFragment } = render(<PostForm />);
+
+    expect(asFragment()).toMatchSnapshot();
+  });
 });

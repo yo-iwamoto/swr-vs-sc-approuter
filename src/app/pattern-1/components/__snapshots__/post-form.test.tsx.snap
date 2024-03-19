@@ -1,0 +1,69 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PostForm > snapshot 1`] = `
+<DocumentFragment>
+  <section
+    class="max-w-lg mx-auto w-full"
+  >
+    <form>
+      <div
+        class="shr-flex-col shr-justify-start [&_>_*]:shr-my-0 shr-flex shr-space-y-1 items-center gap-1"
+      >
+        <h1
+          class="text-lg font-bold"
+        >
+          新規ポスト
+        </h1>
+        <div
+          class="shr-flex-col shr-justify-start [&_>_*]:shr-my-0 shr-flex shr-space-y-0.5 sc-ilxebA fSuyNt w-full smarthr-ui-FormGroup"
+        >
+          <label
+            class="shr-flex-wrap [&:empty]:shr-gap-0 shr-flex shr-gap-y-0.5 shr-gap-x-0.5 shr-items-center sc-jIBlqr hndDbA smarthr-ui-FormGroup-label"
+            for=":r6:"
+            id=":r7:"
+          >
+            <span
+              class="shr-text-base shr-font-bold"
+            >
+              ポストの本文
+            </span>
+          </label>
+          <div
+            class="sc-gYrqIg keLuCv"
+          >
+            <textarea
+              class="smarthr-ui-Textarea-textarea shr-border-shorthand shr-my-[unset] shr-box-border shr-rounded-m shr-bg-white shr-p-0.5 shr-text-base shr-leading-normal shr-text-black shr-opacity-100 contrast-more:shr-border-high-contrast placeholder:shr-text-grey focus-visible:shr-focus-indicator disabled:shr-pointer-events-none disabled:shr-bg-column disabled:shr-text-disabled disabled:placeholder:shr-text-disabled shr-border-default w-full py-2"
+              data-1p-ignore="true"
+              id=":r6:"
+              name="content"
+              required=""
+              rows="5"
+            />
+            <span
+              class="smarthr-ui-Textarea-counter shr-block shr-text-sm"
+            >
+              あと
+              <span
+                class="shr-font-bold shr-text-grey"
+              >
+                140
+              </span>
+              文字
+            </span>
+          </div>
+        </div>
+        <button
+          class="disabled:shr-cursor-not-allowed disabled:shr-bg-clip-padding [&_.smarthr-ui-Icon]:forced-colors:disabled:shr-fill-[GrayText] shr-box-border shr-cursor-pointer shr-inline-flex shr-justify-center shr-items-center shr-gap-0.5 shr-text-center shr-whitespace-nowrap shr-rounded-m shr-border-shorthand shr-font-inherit shr-font-bold shr-leading-none focus-visible:shr-focus-indicator contrast-more:shr-border-high-contrast [&_.smarthr-ui-Icon]:shr-block [&_svg]:shr-block shr-text-base shr-px-1 shr-py-0.75 shr-border-main shr-bg-main shr-text-white focus-visible:shr-border-main-darken focus-visible:shr-bg-main-darken hover:shr-border-main-darken hover:shr-bg-main-darken disabled:shr-border-main/50 disabled:shr-bg-main/50 disabled:shr-text-white/50 smarthr-ui-Button w-full overflow-hidden h-[42px]"
+          type="submit"
+        >
+          <span
+            class="shr-min-w-0"
+          >
+            投稿
+          </span>
+        </button>
+      </div>
+    </form>
+  </section>
+</DocumentFragment>
+`;

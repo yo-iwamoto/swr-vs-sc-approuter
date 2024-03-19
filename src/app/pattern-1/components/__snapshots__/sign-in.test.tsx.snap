@@ -1,0 +1,70 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SignIn > snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="smarthr-ui-Base shr-bg-white forced-colors:shr-border-shorthand contrast-more:shr-border-high-contrast shr-rounded-l shr-shadow-layer-1 p-8 max-w-md mx-auto my-20"
+  >
+    <form
+      class="flex flex-col items-center gap-5"
+    >
+      <h1
+        class="text-lg font-bold"
+      >
+        サインイン画面
+      </h1>
+      <p
+        class="text-sm text-center"
+      >
+        任意のユーザー名でサインインできます。
+        <br />
+        存在しないユーザー名の場合、作成してサインインします。
+      </p>
+      <div
+        class="shr-flex-col shr-justify-start [&_>_*]:shr-my-0 shr-flex shr-space-y-0.5 sc-ilxebA fSuyNt w-full smarthr-ui-FormGroup"
+      >
+        <label
+          class="shr-flex-wrap [&:empty]:shr-gap-0 shr-flex shr-gap-y-0.5 shr-gap-x-0.5 shr-items-center sc-jIBlqr hndDbA smarthr-ui-FormGroup-label"
+          for=":r8:"
+          id=":r9:"
+        >
+          <span
+            class="shr-text-base shr-font-bold"
+          >
+            ユーザー名
+          </span>
+        </label>
+        <div
+          class="sc-gYrqIg keLuCv"
+        >
+          <span
+            class="smarthr-ui-Input shr-border-shorthand shr-box-border shr-inline-flex shr-cursor-text shr-items-center shr-gap-0.5 shr-rounded-m shr-bg-white shr-px-0.5 contrast-more:shr-border-high-contrast focus-within:shr-focus-indicator w-full py-2"
+            role="presentation"
+          >
+            <input
+              class="smarthr-ui-Input-input shr-inline-block shr-w-full shr-grow shr-border-none shr-bg-transparent shr-py-0.75 shr-text-base shr-leading-none shr-text-black shr-outline-none shr-outline-0 placeholder:shr-text-grey disabled:shr-text-disabled disabled:shr-opacity-100 shr-h-[theme(fontSize.base)]"
+              data-1p-ignore="true"
+              id=":r8:"
+              maxlength="100"
+              name="username"
+              required=""
+            />
+          </span>
+        </div>
+      </div>
+      <button
+        class="disabled:shr-cursor-not-allowed disabled:shr-bg-clip-padding [&_.smarthr-ui-Icon]:forced-colors:disabled:shr-fill-[GrayText] shr-box-border shr-cursor-pointer shr-inline-flex shr-justify-center shr-items-center shr-gap-0.5 shr-text-center shr-whitespace-nowrap shr-rounded-m shr-border-shorthand shr-font-inherit shr-font-bold shr-leading-none focus-visible:shr-focus-indicator contrast-more:shr-border-high-contrast [&_.smarthr-ui-Icon]:shr-block [&_svg]:shr-block shr-text-base shr-px-1 shr-py-0.75 shr-border-main shr-bg-main shr-text-white focus-visible:shr-border-main-darken focus-visible:shr-bg-main-darken hover:shr-border-main-darken hover:shr-bg-main-darken disabled:shr-border-main/50 disabled:shr-bg-main/50 disabled:shr-text-white/50 smarthr-ui-Button w-full"
+        type="submit"
+      >
+        <span
+          class="shr-min-w-0"
+        >
+          <span>
+            サインイン
+          </span>
+        </span>
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;

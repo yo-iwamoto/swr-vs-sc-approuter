@@ -75,4 +75,10 @@ describe("SignIn", () => {
       message: "ユーザーを新しく作成し、サインインしました",
     });
   });
+
+  it("snapshot", () => {
+    const { asFragment } = render(<SignIn />);
+
+    expect(asFragment()).toMatchSnapshot();
+  });
 });

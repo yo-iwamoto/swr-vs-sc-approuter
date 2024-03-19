@@ -56,4 +56,11 @@ describe("UserStatus", () => {
 
     expect(UserStatus()).toBe(false);
   });
+
+  it("snapshot", () => {
+    useMeQueryMok.mockReturnValue({ data: { user: { username: "john doe" } } });
+    const { asFragment } = render(<UserStatus />);
+
+    expect(asFragment()).toMatchSnapshot();
+  });
 });
