@@ -27,8 +27,14 @@ export function SignIn() {
 
   return (
     <Base className="p-8 max-w-md mx-auto my-20">
-      <form onSubmit={onSubmit} className="flex flex-col items-center gap-2">
+      <form onSubmit={onSubmit} className="flex flex-col items-center gap-5">
         <h1 className="text-lg font-bold">サインイン画面</h1>
+
+        <p className="text-sm text-center">
+          任意のユーザー名でサインインできます。
+          <br />
+          存在しないユーザー名の場合、作成してサインインします。
+        </p>
 
         <FormControl title="ユーザー名" className="w-full">
           <Input
