@@ -1,6 +1,6 @@
 import { envVars } from "@/config/env";
 import { prisma } from "@/lib/prisma";
-import type { Context } from "hono";
+import type { Context, Next } from "hono";
 import { getCookie } from "hono/cookie";
 import { HTTPException } from "hono/http-exception";
 import * as jwt from "hono/jwt";
@@ -14,7 +14,10 @@ async function verifyToken(c: Context) {
   return jwt.verify(token, envVars.JWT_SECRET, "HS256");
 }
 
-export const authMiddleware = verifyToken;
+export async function authMiddleware(c: Context, next: Next) {
+  await verifyToken(c);
+  await next();
+}
 
 export async function currentUserId(c: Context) {
   const token = getCookie(c, "token");

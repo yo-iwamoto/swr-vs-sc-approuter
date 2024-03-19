@@ -1,28 +1,103 @@
 "use client";
 
-import { api } from "@/lib/api";
-import useSWR from "swr";
-import { Base, Stack } from "smarthr-ui";
-import { resolveResponse } from "@/lib/resolve-response";
+import { type PostApiResponse, api } from "@/lib/api";
+import {
+  Base,
+  Button,
+  Cluster,
+  Dropdown,
+  DropdownContent,
+  DropdownTrigger,
+  FaCaretDownIcon,
+  FaUserIcon,
+  Loader,
+} from "smarthr-ui";
+import { mutate } from "swr";
+import useSWRMutation from "swr/mutation";
+import { usePostsQuery } from "../queries/posts";
+import { useMeQuery } from "../queries/me";
 
 export function Posts() {
-  const query = useSWR("posts", () => api.posts.$get().then(resolveResponse));
+  const postsQuery = usePostsQuery();
 
-  if (query.error !== undefined) {
+  if (postsQuery.error !== undefined) {
     return <p>Error</p>;
   }
 
-  if (query.data === undefined) {
-    return <p>Loading...</p>;
+  if (postsQuery.data === undefined) {
+    return (
+      <div className="h-80 grid place-items-center">
+        <Loader />
+      </div>
+    );
+  }
+
+  if (postsQuery.data.posts.length === 0) {
+    return <p className="text-center">ポストがありません</p>;
   }
 
   return (
-    <Stack as="ul">
-      {query.data.posts.map((post) => (
-        <Base as="li">
-          <p>{post.content}</p>
-        </Base>
+    <ul className="grid gap-3 max-w-2xl mx-auto w-full">
+      {postsQuery.data.posts.map((post) => (
+        <Post key={post.id} post={post} />
       ))}
-    </Stack>
+    </ul>
+  );
+}
+
+type PostProps = {
+  post: PostApiResponse;
+};
+
+function Post({ post }: PostProps) {
+  const meQuery = useMeQuery();
+
+  const mutation = useSWRMutation("deletePost", () =>
+    api.posts[":id"].$delete({ param: { id: post.id } }),
+  );
+
+  const onClickDelete = async () => {
+    if (!confirm("本当に削除しますか？")) return;
+
+    await mutation.trigger();
+    await mutate(["posts"]);
+  };
+
+  if (meQuery.data === undefined) return false;
+
+  const isMyPost = meQuery.data.user.id === post.userId;
+
+  return (
+    <Base as="li" className="p-4 grid gap-2">
+      <Cluster align="center" justify="space-between">
+        <p className="font-bold">
+          <Cluster align="center">
+            <FaUserIcon />
+            <span>{post.User.username}</span>
+          </Cluster>
+        </p>
+
+        {isMyPost && (
+          <Dropdown>
+            <DropdownTrigger>
+              <Button size="s" type="button" suffix={<FaCaretDownIcon />}>
+                操作
+              </Button>
+            </DropdownTrigger>
+            <DropdownContent>
+              <ul>
+                <li>
+                  <Button type="button" onClick={onClickDelete}>
+                    削除
+                  </Button>
+                </li>
+              </ul>
+            </DropdownContent>
+          </Dropdown>
+        )}
+      </Cluster>
+
+      <p>{post.content}</p>
+    </Base>
   );
 }

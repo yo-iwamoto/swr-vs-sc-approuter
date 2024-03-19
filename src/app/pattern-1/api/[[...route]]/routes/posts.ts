@@ -11,6 +11,7 @@ app.use("*", authMiddleware);
 export const postsRoute = app
   .get("/", async (c) => {
     const posts = await prisma.post.findMany({
+      include: { User: true },
       orderBy: { createdAt: "desc" },
     });
 

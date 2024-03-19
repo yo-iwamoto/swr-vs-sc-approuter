@@ -11,7 +11,7 @@ const app = new Hono();
 
 export const authRoute = app
   .get("/me", async (c) => {
-    const user = currentUser(c);
+    const user = await currentUser(c);
     return c.json({ user });
   })
   .post(
@@ -33,12 +33,12 @@ export const authRoute = app
           "HS256",
         );
         setCookie(c, "token", token);
-        return c.json({ user: newUser });
+        return c.json({ user: newUser, type: "signup" as const });
       }
 
       const token = await jwt.sign({ userId: user.id }, envVars.JWT_SECRET);
       setCookie(c, "token", token);
-      return c.json({ user });
+      return c.json({ user, type: "signin" as const });
     },
   )
   .post("/signout", (c) => {
