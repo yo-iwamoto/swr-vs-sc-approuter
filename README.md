@@ -13,3 +13,9 @@ pnpm dev
 ```
 
 Now you can open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Unit test
+
+```shell
+pnpm run test
+```
