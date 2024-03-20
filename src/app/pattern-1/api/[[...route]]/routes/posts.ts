@@ -13,10 +13,14 @@ export const postsRoute = app
     const userId = await currentUserId(c);
     const posts = (
       await prisma.post.findMany({
-        include: { User: true, Like: { where: { userId } } },
+        include: { User: true, Like: true },
         orderBy: { createdAt: "desc" },
       })
-    ).map((post) => ({ ...post, isLiked: post.Like.length > 0 }));
+    ).map((post) => ({
+      ...post,
+      isLiked: post.Like.some((like) => like.userId === userId),
+      likeCount: post.Like.length,
+    }));
 
     return c.json({ posts });
   })
@@ -68,10 +72,14 @@ export const postsRoute = app
     const posts = (
       await prisma.post.findMany({
         where: { userId: { in: [...followingUserIds, userId] } },
-        include: { User: true, Like: { where: { userId } } },
+        include: { User: true, Like: true },
         orderBy: { createdAt: "desc" },
       })
-    ).map((post) => ({ ...post, isLiked: post.Like.length > 0 }));
+    ).map((post) => ({
+      ...post,
+      isLiked: post.Like.some((like) => like.userId === userId),
+      likeCount: post.Like.length,
+    }));
     return c.json({ posts, followingUserIds });
   })
   .get("/likes", async (c) => {
@@ -79,9 +87,9 @@ export const postsRoute = app
     const posts = (
       await prisma.post.findMany({
         where: { Like: { some: { userId } } },
-        include: { User: true, Like: { where: { userId } } },
+        include: { User: true, Like: true },
         orderBy: { createdAt: "desc" },
       })
-    ).map((post) => ({ ...post, isLiked: true }));
+    ).map((post) => ({ ...post, isLiked: true, likeCount: post.Like.length }));
     return c.json({ posts });
   });

@@ -35,9 +35,13 @@ export const usersRoute = app
     const posts = (
       await prisma.post.findMany({
         where: { userId: id },
-        include: { User: true, Like: { where: { userId } } },
+        include: { User: true, Like: true },
       })
-    ).map((post) => ({ ...post, isLiked: post.Like.length > 0 }));
+    ).map((post) => ({
+      ...post,
+      isLiked: post.Like.some((like) => like.userId === userId),
+      likeCount: post.Like.length,
+    }));
     return c.json({ posts });
   })
   .post("/:id/follow", async (c) => {

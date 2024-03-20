@@ -11,6 +11,7 @@ import {
   DropdownContent,
   DropdownTrigger,
   FaCaretDownIcon,
+  FaStarIcon,
   FaUserIcon,
 } from "smarthr-ui";
 import { useDeletePostMutation } from "../mutations/use-delete-post-mutation";
@@ -52,6 +53,11 @@ export function Post({ post }: Props) {
 
           <span className="text-sm text-gray-600">
             {formatDate(post.createdAt)}
+          </span>
+
+          <span className="text-sm flex items-center gap-1">
+            <FaStarIcon className="text-yellow-500" />
+            <span>{post.likeCount}</span>
           </span>
         </div>
 
