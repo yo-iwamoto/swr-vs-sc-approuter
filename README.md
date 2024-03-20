@@ -4,8 +4,7 @@ SWR vs Server Components for server state management on App Router.
 
 ## Status
 
-- [ ] SWR
-  - wip
+- [ ] SWR ← WIP
 - [ ] Server Components
 
 ## Getting Started
