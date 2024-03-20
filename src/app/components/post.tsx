@@ -14,6 +14,7 @@ import {
 } from "smarthr-ui";
 import { useDeletePostMutation } from "../pattern-1/mutations/use-delete-post-mutation";
 import { useMeQuery } from "../pattern-1/queries/use-me-query";
+import { formatDate } from "@/lib/format-date";
 
 type Props = {
   post: PostApiResponse;
@@ -37,15 +38,21 @@ export function Post({ post }: Props) {
   return (
     <Base as="li" className="p-4 grid gap-2">
       <Cluster align="center" justify="space-between">
-        <Link
-          href={`/pattern-1/user/${post.User.id}`}
-          className="font-bold hover:underline"
-        >
-          <Cluster as="span" align="center">
-            <FaUserIcon />
-            <span>{post.User.username}</span>
-          </Cluster>
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            href={`/pattern-1/user/${post.User.id}`}
+            className="font-bold hover:underline"
+          >
+            <Cluster as="span" align="center">
+              <FaUserIcon />
+              <span>{post.User.username}</span>
+            </Cluster>
+          </Link>
+
+          <span className="text-sm text-gray-600">
+            {formatDate(post.createdAt)}
+          </span>
+        </div>
 
         {isMyPost && (
           <Dropdown>
