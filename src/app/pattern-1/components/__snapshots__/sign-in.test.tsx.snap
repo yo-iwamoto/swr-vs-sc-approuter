@@ -25,8 +25,8 @@ exports[`SignIn > snapshot 1`] = `
       >
         <label
           class="shr-flex-wrap [&:empty]:shr-gap-0 shr-flex shr-gap-y-0.5 shr-gap-x-0.5 shr-items-center sc-jIBlqr hndDbA smarthr-ui-FormGroup-label"
-          for=":r8:"
-          id=":r9:"
+          for=":r6:"
+          id=":r7:"
         >
           <span
             class="shr-text-base shr-font-bold"
@@ -44,7 +44,7 @@ exports[`SignIn > snapshot 1`] = `
             <input
               class="smarthr-ui-Input-input shr-inline-block shr-w-full shr-grow shr-border-none shr-bg-transparent shr-py-0.75 shr-text-base shr-leading-none shr-text-black shr-outline-none shr-outline-0 placeholder:shr-text-grey disabled:shr-text-disabled disabled:shr-opacity-100 shr-h-[theme(fontSize.base)]"
               data-1p-ignore="true"
-              id=":r8:"
+              id=":r6:"
               maxlength="100"
               name="username"
               required=""

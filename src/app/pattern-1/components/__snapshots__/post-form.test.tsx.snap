@@ -19,8 +19,8 @@ exports[`PostForm > snapshot 1`] = `
         >
           <label
             class="shr-flex-wrap [&:empty]:shr-gap-0 shr-flex shr-gap-y-0.5 shr-gap-x-0.5 shr-items-center sc-jIBlqr hndDbA smarthr-ui-FormGroup-label"
-            for=":r6:"
-            id=":r7:"
+            for=":r4:"
+            id=":r5:"
           >
             <span
               class="shr-text-base shr-font-bold"
@@ -34,7 +34,7 @@ exports[`PostForm > snapshot 1`] = `
             <textarea
               class="smarthr-ui-Textarea-textarea shr-border-shorthand shr-my-[unset] shr-box-border shr-rounded-m shr-bg-white shr-p-0.5 shr-text-base shr-leading-normal shr-text-black shr-opacity-100 contrast-more:shr-border-high-contrast placeholder:shr-text-grey focus-visible:shr-focus-indicator disabled:shr-pointer-events-none disabled:shr-bg-column disabled:shr-text-disabled disabled:placeholder:shr-text-disabled shr-border-default w-full py-2"
               data-1p-ignore="true"
-              id=":r6:"
+              id=":r4:"
               name="content"
               required=""
               rows="5"

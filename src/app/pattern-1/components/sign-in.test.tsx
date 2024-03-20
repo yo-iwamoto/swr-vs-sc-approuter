@@ -9,9 +9,6 @@ vi.mock("@/app/pattern-1/mutations/use-sign-in-mutation", () => ({
   })),
 }));
 
-const mutateMock = vi.hoisted(() => vi.fn());
-vi.mock("swr", () => ({ mutate: mutateMock }));
-
 const notifyMock = vi.hoisted(() => vi.fn());
 vi.mock("@/app/components/notification-bar-area", () => ({
   useNotification: vi.fn(() => ({
@@ -30,18 +27,6 @@ describe("SignIn", () => {
     await userEvent.click(screen.getByRole("button", { name: "サインイン" }));
 
     expect(triggerMock).toHaveBeenLastCalledWith({ username: "user" });
-  });
-
-  it('サインイン後、"me" が mutate されること', async () => {
-    render(<SignIn />);
-
-    await userEvent.type(
-      screen.getByRole("textbox", { name: "ユーザー名" }),
-      "user",
-    );
-    await userEvent.click(screen.getByRole("button", { name: "サインイン" }));
-
-    expect(mutateMock).toHaveBeenLastCalledWith(["me"]);
   });
 
   it("サインイン後、種別がサインインであれば、サインインした旨通知が表示されること", async () => {

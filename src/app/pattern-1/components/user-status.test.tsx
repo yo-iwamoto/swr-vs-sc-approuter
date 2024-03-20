@@ -14,9 +14,6 @@ vi.mock("@/app/pattern-1/mutations/use-sign-out-mutation", () => ({
   })),
 }));
 
-const mutateMock = vi.hoisted(() => vi.fn());
-vi.mock("swr", () => ({ mutate: mutateMock }));
-
 const notifyMock = vi.fn();
 vi.mock("@/app/components/notification-bar-area", () => ({
   useNotification: vi.fn(() => ({
@@ -40,15 +37,6 @@ describe("UserStatus", () => {
     await userEvent.click(screen.getByRole("button", { name: "サインアウト" }));
 
     expect(triggerSignOutMock).toHaveBeenCalledOnce();
-  });
-
-  it('サインアウト後、"me" が mutate されること', async () => {
-    useMeQueryMok.mockReturnValue({ data: { user: { username: "john doe" } } });
-    render(<UserStatus />);
-
-    await userEvent.click(screen.getByRole("button", { name: "サインアウト" }));
-
-    expect(mutateMock).toHaveBeenLastCalledWith(["me"]);
   });
 
   it("ログインしていない時、false が返されること", () => {

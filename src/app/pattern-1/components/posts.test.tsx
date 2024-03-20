@@ -20,9 +20,6 @@ vi.mock("@/app/pattern-1/mutations/use-delete-post-mutation", () => ({
   })),
 }));
 
-const mutateMock = vi.hoisted(() => vi.fn());
-vi.mock("swr", () => ({ mutate: mutateMock }));
-
 describe("Posts", () => {
   it("ポストが1件もない時、ポストがありませんと表示されること", () => {
     usePostsQueryMock.mockReturnValue({ data: { posts: [] } });
