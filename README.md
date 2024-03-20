@@ -7,7 +7,9 @@ SWR vs Server Components for server state management on App Router.
 ```shell
 pnpm i
 
-pnpm prisma:push
+pnpm db:push
+
+pnpm db:seed
 
 pnpm dev
 ```

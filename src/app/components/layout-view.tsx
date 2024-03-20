@@ -20,13 +20,13 @@ export function LayoutView({ children }: PropsWithChildren) {
           { children: "ホーム", href: "/", current: pathname === "/" },
           {
             children: "SWR",
-            href: "/pattern-1",
-            current: pathname === "/pattern-1",
+            href: "/pattern-1/timeline",
+            current: pathname.startsWith("/pattern-1"),
           },
           {
             children: "Server Components",
             href: "/pattern-2",
-            current: pathname === "/pattern-2",
+            current: pathname.startsWith("/pattern-2"),
           },
         ]}
       />

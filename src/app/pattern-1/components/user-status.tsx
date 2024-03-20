@@ -4,7 +4,6 @@ import { useNotification } from "@/app/components/notification-bar-area";
 import { useSignOutMutation } from "@/app/pattern-1/mutations/use-sign-out-mutation";
 import { useMeQuery } from "@/app/pattern-1/queries/use-me-query";
 import { Button } from "smarthr-ui";
-import { mutate } from "swr";
 
 export function UserStatus() {
   const meQuery = useMeQuery();
@@ -13,7 +12,6 @@ export function UserStatus() {
 
   const onClickSignOut = async () => {
     await signOutMutation.trigger();
-    await mutate(["me"]);
     notify({ type: "success", message: "サインアウトしました" });
   };
 

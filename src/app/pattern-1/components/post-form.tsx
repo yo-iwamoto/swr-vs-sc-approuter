@@ -3,7 +3,6 @@
 import { useCreatePostMutation } from "@/app/pattern-1/mutations/use-create-post-mutation";
 import type { FormEvent } from "react";
 import { Button, FormControl, Stack, Textarea } from "smarthr-ui";
-import { mutate } from "swr";
 
 export function PostForm() {
   const mutation = useCreatePostMutation();
@@ -17,7 +16,6 @@ export function PostForm() {
 
     await mutation.trigger({ content });
     form.reset();
-    await mutate(["posts"]);
   };
 
   return (

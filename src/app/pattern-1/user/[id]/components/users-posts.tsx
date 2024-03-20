@@ -1,17 +1,19 @@
 "use client";
 
 import { Post } from "@/app/components/post";
-import { usePostsQuery } from "@/app/pattern-1/queries/use-posts-query";
 import { Loader } from "smarthr-ui";
+import { useUsersPostsQuery } from "../queries/use-users-posts-query";
 
-export function Posts() {
-  const postsQuery = usePostsQuery();
+type Props = {
+  userId: string;
+};
 
-  if (postsQuery.error !== undefined) {
-    return <p>Error</p>;
-  }
+export function UsersPosts({ userId }: Props) {
+  const usersPostsQuery = useUsersPostsQuery({ userId });
 
-  if (postsQuery.data === undefined) {
+  if (usersPostsQuery.error !== undefined) return <p>Error</p>;
+
+  if (usersPostsQuery.data === undefined) {
     return (
       <div className="h-80 grid place-items-center">
         <Loader />
@@ -19,13 +21,13 @@ export function Posts() {
     );
   }
 
-  if (postsQuery.data.posts.length === 0) {
+  if (usersPostsQuery.data.posts.length === 0) {
     return <p className="text-center">ポストがありません</p>;
   }
 
   return (
     <ul className="grid gap-3 max-w-2xl mx-auto w-full">
-      {postsQuery.data.posts.map((post) => (
+      {usersPostsQuery.data.posts.map((post) => (
         <Post key={post.id} post={post} />
       ))}
     </ul>

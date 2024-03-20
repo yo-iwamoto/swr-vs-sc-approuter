@@ -1,5 +1,7 @@
 "use client";
 
+import usePrevious from "@/lib/use-previous";
+import { usePathname } from "next/navigation";
 import {
   type ComponentPropsWithoutRef,
   type Dispatch,
@@ -8,6 +10,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -36,6 +39,15 @@ export function NotificationBarArea({ children }: PropsWithChildren) {
   const [notification, setNotification] = useState<NotificationBarProps | null>(
     null,
   );
+
+  const pathname = usePathname();
+  const pathnamePrevious = usePrevious(pathname);
+
+  useEffect(() => {
+    if (pathname !== pathnamePrevious) {
+      setNotification(null);
+    }
+  }, [pathname, pathnamePrevious]);
 
   const provideValue = useMemo(
     () => ({ notification, setNotification }),

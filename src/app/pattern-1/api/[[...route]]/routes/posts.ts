@@ -34,11 +34,6 @@ export const postsRoute = app
       return c.json({ post }, 201);
     },
   )
-  .get("/:id", async (c) => {
-    const id = c.req.param("id");
-    const post = await prisma.post.findUnique({ where: { id } });
-    return c.json({ post });
-  })
   .delete("/:id", async (c) => {
     const id = c.req.param("id");
     const userId = await currentUserId(c);
@@ -58,4 +53,19 @@ export const postsRoute = app
     const userId = await currentUserId(c);
     await prisma.like.deleteMany({ where: { postId: id, userId } });
     return c.json({ status: "ok" });
+  })
+  .get("/timeline", async (c) => {
+    const userId = await currentUserId(c);
+    const followingUserIds = (
+      await prisma.follow.findMany({
+        where: { followingId: userId },
+        select: { followerId: true },
+      })
+    ).map((follow) => follow.followerId);
+    const posts = await prisma.post.findMany({
+      where: { userId: { in: [...followingUserIds, userId] } },
+      include: { User: true },
+      orderBy: { createdAt: "desc" },
+    });
+    return c.json({ posts, followingUserIds });
   });

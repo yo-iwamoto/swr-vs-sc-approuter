@@ -4,7 +4,6 @@ import { useNotification } from "@/app/components/notification-bar-area";
 import { useSignInMutation } from "@/app/pattern-1/mutations/use-sign-in-mutation";
 import type { FormEvent } from "react";
 import { Base, Button, FormControl, Input } from "smarthr-ui";
-import { mutate } from "swr";
 
 export function SignIn() {
   const { notify } = useNotification();
@@ -17,7 +16,6 @@ export function SignIn() {
     if (typeof username !== "string") return;
 
     const res = await signInMutation.trigger({ username });
-    await mutate(["me"]);
     const message =
       res.type === "signin"
         ? "サインインしました"
