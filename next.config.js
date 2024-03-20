@@ -1,6 +1,3 @@
-const withInterceptStdout = require("next-intercept-stdout");
-const ignoreStderr = require("./ignore-stderr.json");
-
 /**
  * @type {import('next').NextConfig}
  */
@@ -16,6 +13,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withInterceptStdout(nextConfig, (text) =>
-  ignoreStderr.some((pattern) => text.includes(pattern)) ? "" : text,
-);
+module.exports = nextConfig;
