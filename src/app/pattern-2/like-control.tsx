@@ -1,7 +1,8 @@
-import { Button, FaStarIcon, FaXmarkIcon } from "@/components/client-ui";
+import { FaStarIcon, FaXmarkIcon } from "@/components/client-ui";
 import { type PostApiResponse, api } from "@/lib/api";
 import { revalidateTag } from "next/cache";
 import { callApi } from "./server/call-api";
+import { FormStatusButton } from "./components/form-status-button";
 
 type Props = {
   post: PostApiResponse;
@@ -32,21 +33,21 @@ export function LikeControl({ post }: Props) {
     <>
       {post.isLiked ? (
         <form action={unlikeAction}>
-          <Button size="s" type="submit" variant="secondary">
+          <FormStatusButton size="s" type="submit" variant="secondary">
             <div className="flex items-center gap-2">
               <FaXmarkIcon />
               <span>いいねを解除</span>
             </div>
-          </Button>
+          </FormStatusButton>
         </form>
       ) : (
         <form action={likeAction}>
-          <Button size="s" type="submit" variant="primary">
+          <FormStatusButton size="s" type="submit" variant="primary">
             <div className="flex items-center gap-2">
               <FaStarIcon />
               <span>いいね</span>
             </div>
-          </Button>
+          </FormStatusButton>
         </form>
       )}
     </>
