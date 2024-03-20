@@ -1,0 +1,8 @@
+#!/bin/bash
+
+pnpm run typecheck
+
+pnpm run check
+
+pnpm run test
+

@@ -3,6 +3,7 @@
   "license": "MIT",
   "scripts": {
     "build": "next build",
+    "prepare": "git config --local core.hooksPath .githooks",
     "check": "biome check .",
     "dev": "next dev",
     "format": "biome format --write .",
