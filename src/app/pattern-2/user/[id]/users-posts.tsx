@@ -1,11 +1,15 @@
+import { Post } from "@/app/pattern-2/components/post";
 import { type PostApiResponse, api } from "@/lib/api";
-import { Post } from "../components/post";
-import { callApi } from "../server/call-api";
+import { callApi } from "../../server/call-api";
 
-export async function Posts() {
+type Props = {
+  userId: string;
+};
+
+export async function UsersPosts({ userId }: Props) {
   const { posts }: { posts: PostApiResponse[] } = await callApi(
-    api.posts.timeline.$url().toString(),
-    { next: { tags: ["posts", "timeline"] } },
+    api.users[":id"].posts.$url({ param: { id: userId } }).toString(),
+    { next: { tags: ["posts"] } },
   );
 
   if (posts.length === 0) {

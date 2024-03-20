@@ -41,7 +41,7 @@ export async function Post({ post }: Props) {
       <Cluster align="center" justify="space-between">
         <div className="flex items-center gap-2">
           <Link
-            href={`/pattern-1/user/${post.User.id}`}
+            href={`/pattern-2/user/${post.User.id}`}
             className="font-bold hover:underline"
           >
             <Cluster as="span" align="center">

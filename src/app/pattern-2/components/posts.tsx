@@ -5,12 +5,7 @@ import { Post } from "./post";
 export async function Posts() {
   const { posts }: { posts: PostApiResponse[] } = await callApi(
     api.posts.$url().toString(),
-    {
-      cache: "no-cache",
-      next: {
-        tags: ["posts"],
-      },
-    },
+    { next: { tags: ["posts"] } },
   );
 
   if (posts.length === 0) {

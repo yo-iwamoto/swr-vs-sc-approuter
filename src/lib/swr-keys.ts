@@ -5,4 +5,5 @@ export const swrKeys = {
   isFollowing: "is-following",
   followings: "followings",
   likes: "likes",
+  user: "user",
 } as const;

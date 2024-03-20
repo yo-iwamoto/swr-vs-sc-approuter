@@ -1,15 +1,14 @@
 import { LoadingUi } from "@/app/components/loading-ui";
 import { Suspense } from "react";
-import { PostForm } from "../components/post-form";
-import { Posts } from "./posts";
+import { Likes } from "./likes";
 
 export default function Page() {
   return (
-    <main className="py-8 px-2 grid gap-12">
-      <PostForm />
+    <main className="grid gap-8">
+      <h1 className="font-bold text-xl text-center">いいねしたポスト</h1>
 
       <Suspense fallback={<LoadingUi />}>
-        <Posts />
+        <Likes />
       </Suspense>
     </main>
   );

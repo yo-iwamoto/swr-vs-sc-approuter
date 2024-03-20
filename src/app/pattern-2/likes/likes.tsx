@@ -1,15 +1,15 @@
+import { Post } from "@/app/pattern-2/components/post";
 import { type PostApiResponse, api } from "@/lib/api";
-import { Post } from "../components/post";
 import { callApi } from "../server/call-api";
 
-export async function Posts() {
+export async function Likes() {
   const { posts }: { posts: PostApiResponse[] } = await callApi(
-    api.posts.timeline.$url().toString(),
-    { next: { tags: ["posts", "timeline"] } },
+    api.posts.likes.$url().toString(),
+    { next: { tags: ["posts", "likes"] } },
   );
 
   if (posts.length === 0) {
-    return <p className="text-center">ポストがありません</p>;
+    return <p className="text-center">いいねしたポストがありません</p>;
   }
 
   return (

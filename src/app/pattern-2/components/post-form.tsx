@@ -1,4 +1,4 @@
-import { FormControl, Stack, Textarea } from "@/components/client-ui";
+import { Stack, Textarea } from "@/components/client-ui";
 import { api } from "@/lib/api";
 import { revalidateTag } from "next/cache";
 import { callApi } from "../server/call-api";
@@ -26,8 +26,13 @@ export function PostForm() {
         <Stack className="items-center gap-1">
           <h1 className="text-lg font-bold">新規ポスト</h1>
 
-          <FormControl title="ポストの本文" className="w-full">
+          <div className="w-full grid gap-2">
+            <label htmlFor="content" className="font-bold">
+              ポストの本文
+            </label>
+
             <Textarea
+              id="content"
               name="content"
               required
               maxLength={140}
@@ -35,7 +40,7 @@ export function PostForm() {
               data-1p-ignore
               rows={5}
             />
-          </FormControl>
+          </div>
 
           <FormStatusButton
             type="submit"

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCreatePostMutation } from "@/app/pattern-1/mutations/use-create-post-mutation";
-import { Button, FormControl, Stack, Textarea } from "@/components/client-ui";
+import { Button, Stack, Textarea } from "@/components/client-ui";
 import type { FormEvent } from "react";
 
 export function PostForm() {
@@ -24,8 +24,13 @@ export function PostForm() {
         <Stack className="items-center gap-1">
           <h1 className="text-lg font-bold">新規ポスト</h1>
 
-          <FormControl title="ポストの本文" className="w-full">
+          <div className="w-full grid gap-2">
+            <label htmlFor="content" className="font-bold">
+              ポストの本文
+            </label>
+
             <Textarea
+              id="content"
               name="content"
               required
               maxLength={140}
@@ -33,7 +38,7 @@ export function PostForm() {
               data-1p-ignore
               rows={5}
             />
-          </FormControl>
+          </div>
 
           <Button
             type="submit"
