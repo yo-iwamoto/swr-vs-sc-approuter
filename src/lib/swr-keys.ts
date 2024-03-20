@@ -3,4 +3,5 @@ export const swrKeys = {
   timeline: "timeline",
   me: "me",
   isFollowing: "is-following",
+  followings: "followings",
 } as const;

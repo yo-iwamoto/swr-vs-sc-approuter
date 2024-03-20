@@ -10,6 +10,16 @@ export const usersRoute = app
     const users = await prisma.user.findMany();
     return c.json({ users });
   })
+  .get("/followings", async (c) => {
+    const userId = await currentUserId(c);
+    const followings = (
+      await prisma.follow.findMany({
+        where: { followingId: userId },
+        include: { follower: true },
+      })
+    ).map((f) => f.follower);
+    return c.json({ followings });
+  })
   .get("/:id", async (c) => {
     const id = c.req.param("id");
     const user = await prisma.user.findUnique({ where: { id } });

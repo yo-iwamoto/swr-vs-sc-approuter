@@ -1,6 +1,7 @@
 "use client";
 
 import type { PostApiResponse } from "@/lib/api";
+import { formatDate } from "@/lib/format-date";
 import Link from "next/link";
 import {
   Base,
@@ -14,7 +15,6 @@ import {
 } from "smarthr-ui";
 import { useDeletePostMutation } from "../pattern-1/mutations/use-delete-post-mutation";
 import { useMeQuery } from "../pattern-1/queries/use-me-query";
-import { formatDate } from "@/lib/format-date";
 
 type Props = {
   post: PostApiResponse;
