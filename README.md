@@ -4,8 +4,8 @@ SWR vs Server Components for server state management on App Router.
 
 ## Status
 
-- [ ] SWR ← WIP
-- [ ] Server Components
+- [x] SWR (src: https://github.com/yo-iwamoto/swr-vs-sc-approuter/tree/main/src/app/pattern-1)
+- [x] Server Components (src: https://github.com/yo-iwamoto/swr-vs-sc-approuter/tree/main/src/app/pattern-2)
 
 ## Feature
 
