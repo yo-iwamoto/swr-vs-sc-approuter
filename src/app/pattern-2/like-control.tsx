@@ -1,8 +1,8 @@
 import { FaStarIcon, FaXmarkIcon } from "@/components/client-ui";
 import { type PostApiResponse, api } from "@/lib/api";
 import { revalidateTag } from "next/cache";
-import { callApi } from "./server/call-api";
 import { FormStatusButton } from "./components/form-status-button";
+import { callApi } from "./server/call-api";
 
 type Props = {
   post: PostApiResponse;
