@@ -31,10 +31,13 @@ export const usersRoute = app
   })
   .get("/:id/posts", async (c) => {
     const id = c.req.param("id");
-    const posts = await prisma.post.findMany({
-      where: { userId: id },
-      include: { User: true },
-    });
+    const userId = await currentUserId(c);
+    const posts = (
+      await prisma.post.findMany({
+        where: { userId: id },
+        include: { User: true, Like: { where: { userId } } },
+      })
+    ).map((post) => ({ ...post, isLiked: post.Like.length > 0 }));
     return c.json({ posts });
   })
   .post("/:id/follow", async (c) => {
