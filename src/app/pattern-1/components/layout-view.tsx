@@ -1,8 +1,8 @@
 "use client";
 
+import { SideNav } from "@/components/client-ui";
 import { usePathname, useRouter } from "next/navigation";
 import type { PropsWithChildren } from "react";
-import { SideNav } from "smarthr-ui";
 import { UserStatus } from "./user-status";
 
 export function LayoutView({ children }: PropsWithChildren) {

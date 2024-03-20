@@ -1,7 +1,7 @@
 "use client";
 
+import { LoadingUi } from "@/app/components/loading-ui";
 import { Post } from "@/app/pattern-1/components/post";
-import { Loader } from "smarthr-ui";
 import { useUsersPostsQuery } from "../queries/use-users-posts-query";
 
 type Props = {
@@ -14,11 +14,7 @@ export function UsersPosts({ userId }: Props) {
   if (usersPostsQuery.error !== undefined) return <p>Error</p>;
 
   if (usersPostsQuery.data === undefined) {
-    return (
-      <div className="h-80 grid place-items-center">
-        <Loader />
-      </div>
-    );
+    return <LoadingUi />;
   }
 
   if (usersPostsQuery.data.posts.length === 0) {

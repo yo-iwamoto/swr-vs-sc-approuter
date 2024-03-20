@@ -1,26 +1,28 @@
-"use client";
-
-import { useCreatePostMutation } from "@/app/pattern-1/mutations/use-create-post-mutation";
-import { Button, FormControl, Stack, Textarea } from "@/components/client-ui";
-import type { FormEvent } from "react";
+import { FormControl, Stack, Textarea } from "@/components/client-ui";
+import { api } from "@/lib/api";
+import { callApi } from "../server/call-api";
+import { revalidateTag } from "next/cache";
+import { FormStatusButton } from "./form-status-button";
 
 export function PostForm() {
-  const mutation = useCreatePostMutation();
+  const createPostAction = async (data: FormData) => {
+    "use server";
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const form = e.currentTarget;
-    const content = new FormData(form).get("content");
+    const content = data.get("content");
     if (typeof content !== "string") return;
 
-    await mutation.trigger({ content });
-    form.reset();
+    await callApi(api.posts.$url().toString(), {
+      method: "POST",
+      body: JSON.stringify({
+        content,
+      }),
+    });
+    revalidateTag("posts");
   };
 
   return (
     <section className="max-w-lg mx-auto w-full">
-      <form onSubmit={onSubmit}>
+      <form action={createPostAction}>
         <Stack className="items-center gap-1">
           <h1 className="text-lg font-bold">新規ポスト</h1>
 
@@ -35,14 +37,13 @@ export function PostForm() {
             />
           </FormControl>
 
-          <Button
+          <FormStatusButton
             type="submit"
             variant="primary"
             className="w-full overflow-hidden h-[42px]"
-            loading={mutation.isMutating}
           >
             投稿
-          </Button>
+          </FormStatusButton>
         </Stack>
       </form>
     </section>

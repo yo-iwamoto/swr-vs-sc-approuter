@@ -1,8 +1,8 @@
 "use client";
 
+import { LoadingUi } from "@/app/components/loading-ui";
 import { Post } from "@/app/pattern-1/components/post";
 import { usePostsQuery } from "@/app/pattern-1/queries/use-posts-query";
-import { Loader } from "smarthr-ui";
 
 export function Posts() {
   const postsQuery = usePostsQuery();
@@ -12,11 +12,7 @@ export function Posts() {
   }
 
   if (postsQuery.data === undefined) {
-    return (
-      <div className="h-80 grid place-items-center">
-        <Loader />
-      </div>
-    );
+    return <LoadingUi />;
   }
 
   if (postsQuery.data.posts.length === 0) {

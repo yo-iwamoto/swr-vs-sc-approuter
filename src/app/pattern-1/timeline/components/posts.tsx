@@ -1,7 +1,7 @@
 "use client";
 
+import { LoadingUi } from "@/app/components/loading-ui";
 import { Post } from "@/app/pattern-1/components/post";
-import { Loader } from "smarthr-ui";
 import { useTimelineQuery } from "../queries/use-timeline-query";
 
 export function Posts() {
@@ -12,11 +12,7 @@ export function Posts() {
   }
 
   if (timelineQuery.data === undefined) {
-    return (
-      <div className="h-80 grid place-items-center">
-        <Loader />
-      </div>
-    );
+    return <LoadingUi />;
   }
 
   if (timelineQuery.data.posts.length === 0) {

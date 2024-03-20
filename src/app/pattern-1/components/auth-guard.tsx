@@ -1,8 +1,8 @@
 "use client";
 
+import { LoadingUi } from "@/app/components/loading-ui";
 import { useMeQuery } from "@/app/pattern-1/queries/use-me-query";
 import type { PropsWithChildren } from "react";
-import { Loader } from "smarthr-ui";
 
 type Props = PropsWithChildren<{
   WhenUnauthenticated: () => JSX.Element;
@@ -14,11 +14,7 @@ export function AuthGuard({ children, WhenUnauthenticated }: Props) {
   if (meQuery.error !== undefined) return <WhenUnauthenticated />;
 
   if (meQuery.data === undefined) {
-    return (
-      <div className="h-80 grid place-items-center">
-        <Loader />
-      </div>
-    );
+    return <LoadingUi />;
   }
 
   return children;

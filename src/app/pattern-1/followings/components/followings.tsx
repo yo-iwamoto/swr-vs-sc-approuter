@@ -1,8 +1,9 @@
 "use client";
 
-import { Base, FaUserIcon, Loader } from "smarthr-ui";
-import { FollowControl } from "../../components/follow-control";
-import { useFollowingsQuery } from "../queries/use-followings-query";
+import { LoadingUi } from "@/app/components/loading-ui";
+import { FollowControl } from "@/app/pattern-1/components/follow-control";
+import { useFollowingsQuery } from "@/app/pattern-1/followings/queries/use-followings-query";
+import { Base, FaUserIcon } from "@/components/client-ui";
 
 export function Followings() {
   const followingsQuery = useFollowingsQuery();
@@ -12,11 +13,7 @@ export function Followings() {
   }
 
   if (followingsQuery.data === undefined) {
-    return (
-      <div className="h-80 grid place-items-center">
-        <Loader />
-      </div>
-    );
+    return <LoadingUi />;
   }
 
   if (followingsQuery.data.followings.length === 0) {

@@ -1,24 +1,35 @@
-"use client";
-
-import { useSignInMutation } from "@/app/pattern-1/mutations/use-sign-in-mutation";
 import { Base, Button, FormControl, Input } from "@/components/client-ui";
-import type { FormEvent } from "react";
+import { envVars } from "@/config/env";
+import { prisma } from "@/lib/prisma";
+import * as jwt from "hono/jwt";
+import { cookies } from "next/headers";
 
 export function SignIn() {
-  const signInMutation = useSignInMutation();
+  const signInAction = async (data: FormData) => {
+    "use server";
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const username = new FormData(e.currentTarget).get("username");
+    const username = data.get("username");
     if (typeof username !== "string") return;
 
-    await signInMutation.trigger({ username });
+    const user = await prisma.user.findUnique({ where: { username } });
+    if (user === null) {
+      const newUser = await prisma.user.create({ data: { username } });
+      const token = await jwt.sign(
+        { userId: newUser.id },
+        envVars.JWT_SECRET,
+        "HS256",
+      );
+      cookies().set("token", token);
+      return;
+    }
+
+    const token = await jwt.sign({ userId: user.id }, envVars.JWT_SECRET);
+    cookies().set("token", token);
   };
 
   return (
     <Base className="p-8 max-w-md mx-auto my-20">
-      <form onSubmit={onSubmit} className="flex flex-col items-center gap-5">
+      <form action={signInAction} className="flex flex-col items-center gap-5">
         <h1 className="text-lg font-bold">サインイン画面</h1>
 
         <p className="text-sm text-center">
@@ -37,12 +48,7 @@ export function SignIn() {
           />
         </FormControl>
 
-        <Button
-          type="submit"
-          variant="primary"
-          className="w-full"
-          loading={signInMutation.isMutating}
-        >
+        <Button type="submit" variant="primary" className="w-full">
           <span>サインイン</span>
         </Button>
       </form>

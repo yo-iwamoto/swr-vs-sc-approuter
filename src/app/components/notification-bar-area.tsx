@@ -1,5 +1,6 @@
 "use client";
 
+import { NotificationBar } from "@/components/client-ui";
 import usePrevious from "@/lib/use-previous";
 import { usePathname } from "next/navigation";
 import {
@@ -14,7 +15,6 @@ import {
   useMemo,
   useState,
 } from "react";
-import { NotificationBar } from "smarthr-ui";
 
 type NotificationBarOriginalProps = ComponentPropsWithoutRef<
   typeof NotificationBar

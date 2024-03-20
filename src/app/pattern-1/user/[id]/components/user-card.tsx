@@ -1,7 +1,8 @@
 "use client";
 
+import { LoadingUi } from "@/app/components/loading-ui";
 import { FollowControl } from "@/app/pattern-1/components/follow-control";
-import { Base, FaUserIcon, Loader } from "smarthr-ui";
+import { Base, FaUserIcon } from "@/components/client-ui";
 import { useUserQuery } from "../queries/use-user-query";
 
 type Props = {
@@ -13,12 +14,7 @@ export function UserCard({ userId }: Props) {
 
   if (userQuery.error !== undefined) return <p>Error</p>;
 
-  if (userQuery.data === undefined)
-    return (
-      <div className="h-80 grid place-items-center">
-        <Loader />
-      </div>
-    );
+  if (userQuery.data === undefined) return <LoadingUi />;
 
   return (
     <Base className="w-full max-w-2xl mx-auto p-6">

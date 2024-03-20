@@ -1,41 +1,40 @@
-"use client";
-
 import {
   Base,
-  Button,
   Cluster,
-  Dropdown,
-  DropdownContent,
-  DropdownTrigger,
-  FaCaretDownIcon,
   FaStarIcon,
+  FaTrashIcon,
   FaUserIcon,
 } from "@/components/client-ui";
-import type { PostApiResponse } from "@/lib/api";
+import { api, type PostApiResponse } from "@/lib/api";
 import { formatDate } from "@/lib/format-date";
+import { revalidateTag } from "next/cache";
 import Link from "next/link";
-import { useDeletePostMutation } from "../mutations/use-delete-post-mutation";
-import { useMeQuery } from "../queries/use-me-query";
-import { LikeControl } from "./like-control";
+import { LikeControl } from "../like-control";
+import { currentUser } from "../server/auth";
+import { callApi } from "../server/call-api";
+import { FormStatusButton } from "./form-status-button";
 
 type Props = {
   post: PostApiResponse;
 };
 
-export function Post({ post }: Props) {
-  const meQuery = useMeQuery();
+export async function Post({ post }: Props) {
+  const me = await currentUser();
+  if (me === null) return false;
 
-  const mutation = useDeletePostMutation();
+  const isMyPost = me.id === post.userId;
 
-  const onClickDelete = async () => {
-    if (!confirm("本当に削除しますか？")) return;
+  const deletePostAction = async () => {
+    "use server";
 
-    await mutation.trigger({ id: post.id });
+    await callApi(
+      api.posts[":id"].$url({ param: { id: post.id } }).toString(),
+      {
+        method: "DELETE",
+      },
+    );
+    revalidateTag("posts");
   };
-
-  if (meQuery.data === undefined) return false;
-
-  const isMyPost = meQuery.data.user.id === post.userId;
 
   return (
     <Base as="li" className="p-4 grid gap-2">
@@ -66,22 +65,16 @@ export function Post({ post }: Props) {
         {!isMyPost && <LikeControl post={post} />}
 
         {isMyPost && (
-          <Dropdown>
-            <DropdownTrigger>
-              <Button size="s" type="button" suffix={<FaCaretDownIcon />}>
-                操作
-              </Button>
-            </DropdownTrigger>
-            <DropdownContent>
-              <ul>
-                <li>
-                  <Button type="button" onClick={onClickDelete}>
-                    削除
-                  </Button>
-                </li>
-              </ul>
-            </DropdownContent>
-          </Dropdown>
+          <form action={deletePostAction}>
+            <FormStatusButton
+              size="s"
+              type="submit"
+              variant="secondary"
+              prefix={<FaTrashIcon />}
+            >
+              削除
+            </FormStatusButton>
+          </form>
         )}
       </Cluster>
 

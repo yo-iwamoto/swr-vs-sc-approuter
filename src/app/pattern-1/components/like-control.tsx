@@ -1,7 +1,7 @@
 "use client";
 
+import { Button, FaStarIcon, FaXmarkIcon } from "@/components/client-ui";
 import type { PostApiResponse } from "@/lib/api";
-import { Button, FaStarIcon, FaXmarkIcon } from "smarthr-ui";
 import { useLikeMutation } from "../mutations/use-like-mutation";
 import { useUnlikeMutation } from "../mutations/use-unlike-mutation";
 

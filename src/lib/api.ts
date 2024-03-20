@@ -6,3 +6,7 @@ export const { api } = hc<AppType>("http://localhost:3000");
 export type PostApiResponse = InferResponseType<
   typeof api.posts.$get
 >["posts"][number];
+
+export type UserApiResponse = InferResponseType<
+  typeof api.auth.me.$get
+>["user"];

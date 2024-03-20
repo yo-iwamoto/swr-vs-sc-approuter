@@ -1,8 +1,8 @@
 "use client";
 
+import { AppNavi } from "@/components/client-ui";
 import { usePathname } from "next/navigation";
 import type { PropsWithChildren } from "react";
-import { AppNavi } from "smarthr-ui";
 import { NotificationBarArea } from "./notification-bar-area";
 
 export function LayoutView({ children }: PropsWithChildren) {
@@ -25,7 +25,7 @@ export function LayoutView({ children }: PropsWithChildren) {
           },
           {
             children: "Server Components",
-            href: "/pattern-2",
+            href: "/pattern-2/timeline",
             current: pathname.startsWith("/pattern-2"),
           },
         ]}

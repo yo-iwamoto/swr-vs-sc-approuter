@@ -1,7 +1,7 @@
 "use client";
 
+import { LoadingUi } from "@/app/components/loading-ui";
 import { Post } from "@/app/pattern-1/components/post";
-import { Loader } from "smarthr-ui";
 import { useLikesQuery } from "../queries/use-likes-query";
 
 export function Likes() {
@@ -12,11 +12,7 @@ export function Likes() {
   }
 
   if (likesQuery.data === undefined) {
-    return (
-      <div className="h-80 grid place-items-center">
-        <Loader />
-      </div>
-    );
+    return <LoadingUi />;
   }
 
   if (likesQuery.data.posts.length === 0) {

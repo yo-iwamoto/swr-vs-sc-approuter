@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, FaPlusIcon, FaXmarkIcon } from "smarthr-ui";
+import { Button, FaPlusIcon, FaXmarkIcon } from "@/components/client-ui";
 import { useMeQuery } from "../queries/use-me-query";
 import { useFollowMutation } from "../user/[id]/mutations/use-follow-mutation";
 import { useUnfollowMutation } from "../user/[id]/mutations/use-unfollow-mutation";
