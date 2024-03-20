@@ -19,12 +19,12 @@ export function SignIn() {
         envVars.JWT_SECRET,
         "HS256",
       );
-      cookies().set("token", token);
+      cookies().set("token", token, { httpOnly: true });
       return;
     }
 
     const token = await jwt.sign({ userId: user.id }, envVars.JWT_SECRET);
-    cookies().set("token", token);
+    cookies().set("token", token, { httpOnly: true });
   };
 
   return (

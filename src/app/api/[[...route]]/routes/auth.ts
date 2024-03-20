@@ -32,12 +32,12 @@ export const authRoute = app
           envVars.JWT_SECRET,
           "HS256",
         );
-        setCookie(c, "token", token);
+        setCookie(c, "token", token, { httpOnly: true });
         return c.json({ user: newUser, type: "signup" as const });
       }
 
       const token = await jwt.sign({ userId: user.id }, envVars.JWT_SECRET);
-      setCookie(c, "token", token);
+      setCookie(c, "token", token, { httpOnly: true });
       return c.json({ user, type: "signin" as const });
     },
   )

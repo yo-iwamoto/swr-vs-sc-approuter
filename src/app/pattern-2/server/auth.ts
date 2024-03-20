@@ -4,11 +4,11 @@ import * as jwt from "hono/jwt";
 import { cookies } from "next/headers";
 import { cache } from "react";
 
-export const authorizationHeader = cache((): { Authorization?: string } => {
+export const getToken = cache(() => {
   const token = cookies().get("token")?.value;
-  if (token === undefined || token === "") return {};
+  if (token === undefined || token === "") return null;
 
-  return { Authorization: `Bearer ${token}` };
+  return token;
 });
 
 export const currentUserId = cache(async () => {

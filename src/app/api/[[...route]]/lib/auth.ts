@@ -5,12 +5,8 @@ import { getCookie } from "hono/cookie";
 import { HTTPException } from "hono/http-exception";
 import * as jwt from "hono/jwt";
 
-async function getToken(c: Context) {
-  return getCookie(c, "token") ?? c.req.header("Authorization")?.split(" ")[1];
-}
-
 async function verifyToken(c: Context) {
-  const token = await getToken(c);
+  const token = getCookie(c, "token");
   if (token === undefined) {
     throw new HTTPException(401, { message: "Not authenticated" });
   }
@@ -24,7 +20,7 @@ export async function authMiddleware(c: Context, next: Next) {
 }
 
 export async function currentUserId(c: Context) {
-  const token = await getToken(c);
+  const token = getCookie(c, "token");
   if (token === undefined) {
     throw new HTTPException(401, { message: "Not authenticated" });
   }
