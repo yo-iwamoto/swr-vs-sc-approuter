@@ -10,10 +10,13 @@ app.use("*", authMiddleware);
 
 export const postsRoute = app
   .get("/", async (c) => {
-    const posts = await prisma.post.findMany({
-      include: { User: true },
-      orderBy: { createdAt: "desc" },
-    });
+    const userId = await currentUserId(c);
+    const posts = (
+      await prisma.post.findMany({
+        include: { User: true, Like: { where: { userId } } },
+        orderBy: { createdAt: "desc" },
+      })
+    ).map((post) => ({ ...post, isLiked: post.Like.length > 0 }));
 
     return c.json({ posts });
   })
@@ -62,10 +65,23 @@ export const postsRoute = app
         select: { followerId: true },
       })
     ).map((follow) => follow.followerId);
-    const posts = await prisma.post.findMany({
-      where: { userId: { in: [...followingUserIds, userId] } },
-      include: { User: true },
-      orderBy: { createdAt: "desc" },
-    });
+    const posts = (
+      await prisma.post.findMany({
+        where: { userId: { in: [...followingUserIds, userId] } },
+        include: { User: true, Like: { where: { userId } } },
+        orderBy: { createdAt: "desc" },
+      })
+    ).map((post) => ({ ...post, isLiked: post.Like.length > 0 }));
     return c.json({ posts, followingUserIds });
+  })
+  .get("/likes", async (c) => {
+    const userId = await currentUserId(c);
+    const posts = (
+      await prisma.post.findMany({
+        where: { Like: { some: { userId } } },
+        include: { User: true, Like: { where: { userId } } },
+        orderBy: { createdAt: "desc" },
+      })
+    ).map((post) => ({ ...post, isLiked: true }));
+    return c.json({ posts });
   });

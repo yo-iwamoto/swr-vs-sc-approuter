@@ -13,8 +13,9 @@ import {
   FaCaretDownIcon,
   FaUserIcon,
 } from "smarthr-ui";
-import { useDeletePostMutation } from "../pattern-1/mutations/use-delete-post-mutation";
-import { useMeQuery } from "../pattern-1/queries/use-me-query";
+import { useDeletePostMutation } from "../mutations/use-delete-post-mutation";
+import { useMeQuery } from "../queries/use-me-query";
+import { LikeControl } from "./like-control";
 
 type Props = {
   post: PostApiResponse;
@@ -53,6 +54,8 @@ export function Post({ post }: Props) {
             {formatDate(post.createdAt)}
           </span>
         </div>
+
+        {!isMyPost && <LikeControl post={post} />}
 
         {isMyPost && (
           <Dropdown>

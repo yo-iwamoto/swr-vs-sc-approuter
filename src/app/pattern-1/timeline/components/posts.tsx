@@ -1,6 +1,6 @@
 "use client";
 
-import { Post } from "@/app/components/post";
+import { Post } from "@/app/pattern-1/components/post";
 import { Loader } from "smarthr-ui";
 import { useTimelineQuery } from "../queries/use-timeline-query";
 
