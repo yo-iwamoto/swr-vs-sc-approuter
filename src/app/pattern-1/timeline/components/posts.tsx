@@ -20,12 +20,7 @@ export function Posts() {
   }
 
   if (timelineQuery.data.posts.length === 0) {
-    const message =
-      timelineQuery.data.followingUserIds.length === 0
-        ? "まだ誰もフォローしていません"
-        : "ポストがありません";
-
-    return <p className="text-center">{message}</p>;
+    return <p className="text-center">ポストがありません</p>;
   }
 
   return (

@@ -55,10 +55,12 @@ export function Post({ post }: Props) {
             {formatDate(post.createdAt)}
           </span>
 
-          <span className="text-sm flex items-center gap-1">
-            <FaStarIcon className="text-yellow-500" />
-            <span>{post.likeCount}</span>
-          </span>
+          {post.likeCount > 0 && (
+            <span className="text-sm flex items-center gap-1">
+              <FaStarIcon className="text-yellow-500" />
+              <span>{post.likeCount}</span>
+            </span>
+          )}
         </div>
 
         {!isMyPost && <LikeControl post={post} />}
