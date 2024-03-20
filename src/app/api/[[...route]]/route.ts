@@ -4,7 +4,7 @@ import { authRoute } from "./routes/auth";
 import { postsRoute } from "./routes/posts";
 import { usersRoute } from "./routes/users";
 
-const app = new Hono().basePath("/pattern-1/api");
+const app = new Hono().basePath("/api");
 
 const routes = app
   .route("/auth", authRoute)
