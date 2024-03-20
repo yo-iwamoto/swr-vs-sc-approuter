@@ -5,7 +5,7 @@ import {
   FaTrashIcon,
   FaUserIcon,
 } from "@/components/client-ui";
-import { api, type PostApiResponse } from "@/lib/api";
+import { type PostApiResponse, api } from "@/lib/api";
 import { formatDate } from "@/lib/format-date";
 import { revalidateTag } from "next/cache";
 import Link from "next/link";

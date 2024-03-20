@@ -1,7 +1,7 @@
+import { LoadingUi } from "@/app/components/loading-ui";
 import { Suspense } from "react";
 import { PostForm } from "../components/post-form";
 import { Posts } from "../components/posts";
-import { LoadingUi } from "@/app/components/loading-ui";
 
 export default function Page() {
   return (
