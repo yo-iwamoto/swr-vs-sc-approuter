@@ -2,6 +2,11 @@
 
 SWR vs Server Components for server state management on App Router.
 
+> [!IMPORTANT]  
+> For clarity, the use of Server Actions in this repository omits authentication processes. However, in practice, Server Actions require authentication each time they are used. Please be cautious if you're referencing this code.
+
+https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations#authentication-and-authorization
+
 ## Status
 
 - [x] SWR (src: https://github.com/yo-iwamoto/swr-vs-sc-approuter/tree/main/src/app/pattern-1)
